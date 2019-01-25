@@ -22,6 +22,7 @@ class Main extends Component {
         description: PropTypes.string,
         url: PropTypes.string,
       })),
+      error: PropTypes.oneOf([null, PropTypes.string]),
     }).isRequired,
   }
 
@@ -47,6 +48,10 @@ class Main extends Component {
 
           {/** Will only execute the code after && when the left size is true */}
           { this.props.favorites.loading && <span>Loading ...</span> }
+
+          {/** The !! is to convert the string in boolean. If error is null,
+          empty or zero, the sentence will be false */}
+          { !!this.props.favorites.error && <span style={{ color: '#F00' }} /> }
         </form>
 
         <ul>
