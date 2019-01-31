@@ -6,25 +6,25 @@ import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 // "*"" means everything will be imported and "as" is an alias
-import * as TodoActions from './store/actions/todos';
+import { Creators as TodoActions } from './store/ducks/todos';
 
-const TodoList = ({ todos, addTodo, removeTodo }) => (
+const TodoList = ({ todos, addTodoRequest, removeTodoRequest }) => (
   <Fragment>
     <ul>
       {todos.map(todo => (
         <li key={todo.id}>
           {todo.text}
-          <button type="button" onClick={() => removeTodo(todo.id)}>Remove</button>
+          <button type="button" onClick={() => removeTodoRequest(todo.id)}>Remove</button>
         </li>
       ))}
     </ul>
-    <button type="button" onClick={() => addTodo('New Todo')}>Add Todo</button>
+    <button type="button" onClick={() => addTodoRequest('New Todo')}>Add Todo</button>
   </Fragment>
 );
 
 TodoList.propTypes = {
-  addTodo: PropTypes.func.isRequired,
-  removeTodo: PropTypes.func.isRequired,
+  addTodoRequest: PropTypes.func.isRequired,
+  removeTodoRequest: PropTypes.func.isRequired,
   todos: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     text: PropTypes.string,
